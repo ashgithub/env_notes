@@ -33,7 +33,7 @@ ENV_NOTES_DATA_ROOT=~/Documents/env-notes-private/notebooks uv run python -m env
 
 If `ENV_NOTES_DATA_ROOT` is not set, the app uses `data/notebooks` inside this repo.
 
-## Stable Local URL: `http://env_notes`
+## Stable Local URL: `http://env-notes`
 
 To run reliably in the browser with launchd + Apache reverse proxy:
 
@@ -50,11 +50,12 @@ sudo ~/env_notes/scripts/install-notes-test-apache.sh
 3. Verify:
 ```bash
 curl -I http://127.0.0.1:9490/
-curl -I http://env_notes/
+curl -I http://env-notes/
 ```
 
 Notes:
-- The Apache vhost uses `ServerName env_notes` and `ServerAlias notes`.
+- Safari is more reliable with `env-notes` (hyphen) than `env_notes` (underscore).
+- The Apache vhost uses `ServerName env-notes` and aliases `notes` + `env_notes`.
 - App traffic is proxied from Apache `:80` to `127.0.0.1:9490`.
 
 ## Public Repo Safety

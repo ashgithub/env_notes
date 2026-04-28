@@ -12,10 +12,10 @@ if [[ "$(id -u)" -ne 0 ]]; then
   exit 1
 fi
 
-echo "Configuring env_notes host entry..."
-if ! grep -Eq '(^|[[:space:]])env_notes([[:space:]]|$)' "$HOSTS_FILE"; then
+echo "Configuring env-notes host entries..."
+if ! grep -Eq '(^|[[:space:]])env-notes([[:space:]]|$)' "$HOSTS_FILE"; then
   cp -p "$HOSTS_FILE" "${HOSTS_FILE}.env-notes.${STAMP}.bak"
-  printf '\n# Env Notes local shortcuts\n127.0.0.1  env_notes notes\n' >> "$HOSTS_FILE"
+  printf '\n# Env Notes local shortcuts\n127.0.0.1  env-notes notes env_notes\n' >> "$HOSTS_FILE"
 fi
 
 echo "Enabling Apache proxy modules..."
@@ -31,8 +31,9 @@ if [[ -f "$ENV_NOTES_CONF" ]]; then
 fi
 cat > "$ENV_NOTES_CONF" <<'EOF'
 <VirtualHost *:80>
-    ServerName env_notes
+    ServerName env-notes
     ServerAlias notes
+    ServerAlias env_notes
 
     ProxyPreserveHost On
     ProxyPass / http://127.0.0.1:9490/
@@ -54,4 +55,4 @@ else
   /usr/sbin/apachectl restart
 fi
 
-echo "Done. Open http://env_notes/"
+echo "Done. Open http://env-notes/ (Safari-friendly)"
