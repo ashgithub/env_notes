@@ -1,0 +1,2 @@
+"""Env Notes local app."""
+

@@ -1,0 +1,17 @@
+[project]
+name = "env-notes"
+version = "0.1.0"
+description = "A simple local OneNote-like notes app."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+]
+
+[project.scripts]
+env-notes = "env_notes.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

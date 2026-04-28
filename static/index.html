@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Env Notes</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div>
+            <h1>Env Notes</h1>
+            <p id="saveStatus">Ready</p>
+          </div>
+          <button id="newNotebookBtn" title="New notebook">+</button>
+        </div>
+        <div class="search-panel">
+          <div class="search-row">
+            <input id="searchInput" type="search" placeholder="Search notes" autocomplete="off">
+            <button id="searchBtn" title="Search">Search</button>
+          </div>
+          <div id="searchResults" class="search-results" hidden></div>
+        </div>
+        <div id="tree" class="tree" aria-label="Notebook tree"></div>
+      </aside>
+
+      <main class="workspace">
+        <header class="toolbar">
+          <div>
+            <div id="breadcrumb" class="breadcrumb">No page selected</div>
+            <h2 id="pageTitle">Choose a page</h2>
+          </div>
+          <div class="actions">
+            <button data-command="insertUnorderedList" title="Bulleted list">• List</button>
+            <button data-command="insertOrderedList" title="Numbered list">1. List</button>
+            <button id="linkBtn" title="Add link">Link</button>
+            <button id="quickNoteBtn">Quick note</button>
+          </div>
+        </header>
+
+        <section id="canvasWrap" class="canvas-wrap">
+          <div id="canvas" class="canvas"></div>
+          <div id="emptyState" class="empty-state">
+            Select or create a page to start taking notes.
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="contextMenu" class="context-menu" hidden></div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
