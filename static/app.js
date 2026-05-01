@@ -19,6 +19,7 @@ const contextMenu = document.querySelector("#contextMenu");
 const searchInput = document.querySelector("#searchInput");
 const searchBtn = document.querySelector("#searchBtn");
 const searchResults = document.querySelector("#searchResults");
+const styleSelect = document.querySelector("#styleSelect");
 
 async function api(path, options = {}) {
   const response = await fetch(path, {
@@ -536,18 +537,45 @@ document.querySelector("#newNotebookBtn").addEventListener("click", async () => 
 
 document.querySelector("#quickNoteBtn").addEventListener("click", addQuickNote);
 
+function activeEditor() {
+  return state.activeNote?.querySelector(".note-body") || null;
+}
+
+function runEditorCommand(command, value = null) {
+  const editor = activeEditor();
+  if (!editor) {
+    return;
+  }
+  editor.focus();
+  document.execCommand(command, false, value);
+  scheduleSave();
+}
+
 document.querySelectorAll("[data-command]").forEach(button => {
   button.addEventListener("click", () => {
-    document.execCommand(button.dataset.command, false);
-    scheduleSave();
+    runEditorCommand(button.dataset.command);
   });
 });
 
+styleSelect?.addEventListener("change", () => {
+  runEditorCommand("formatBlock", styleSelect.value);
+});
+
+document.querySelector("#codeBlockBtn")?.addEventListener("click", () => {
+  runEditorCommand("formatBlock", "PRE");
+});
+
+document.querySelector("#quoteBtn")?.addEventListener("click", () => {
+  runEditorCommand("formatBlock", "BLOCKQUOTE");
+});
+
 document.querySelector("#linkBtn").addEventListener("click", () => {
+  if (!activeEditor()) {
+    return;
+  }
   const url = prompt("Link URL");
   if (url) {
-    document.execCommand("createLink", false, url);
-    scheduleSave();
+    runEditorCommand("createLink", url);
   }
 });
 

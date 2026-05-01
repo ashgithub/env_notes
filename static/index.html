@@ -33,8 +33,18 @@
             <h2 id="pageTitle">Choose a page</h2>
           </div>
           <div class="actions">
+            <select id="styleSelect" title="Text style" aria-label="Text style">
+              <option value="P">Paragraph</option>
+              <option value="H2">H2</option>
+              <option value="H3">H3</option>
+              <option value="H4">H4</option>
+            </select>
+            <button data-command="bold" title="Bold"><strong>B</strong></button>
+            <button data-command="italic" title="Italic"><em>I</em></button>
             <button data-command="insertUnorderedList" title="Bulleted list">• List</button>
             <button data-command="insertOrderedList" title="Numbered list">1. List</button>
+            <button id="codeBlockBtn" title="Code block">{ }</button>
+            <button id="quoteBtn" title="Quote">Quote</button>
             <button id="linkBtn" title="Add link">Link</button>
             <button id="quickNoteBtn">Quick note</button>
           </div>
